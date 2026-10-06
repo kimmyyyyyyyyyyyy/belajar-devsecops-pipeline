@@ -62,3 +62,10 @@ jobs:
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v4
+      - name: Build and Run Container
+        run: |
+          docker build -t secure-flask-app:latest .
+          docker stop web-flask || true
+          docker rm web-flask || true
+          docker run -d -p 5000:5000 --name web-flask secure-flask-app:latest
+          docker ps | grep web-flask
