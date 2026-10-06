@@ -53,3 +53,12 @@ jobs:
           pip install pip-audit
       - name: Run pip-audit
         run: pip-audit -r requirements.txt
+
+  deploy-to-vm:
+    name: Build & Deploy to VirtualBox VM
+    needs: [sast-scan, pylint-check, dependency-scan]
+    if: github.event_name != 'pull_request'
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
