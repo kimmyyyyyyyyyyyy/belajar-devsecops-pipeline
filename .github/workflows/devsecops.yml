@@ -8,7 +8,13 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  hello:
+  sast-scan:
+    name: Semgrep SAST Scan
     runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep
     steps:
-      - run: echo "Pipeline jalan"
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+      - name: Run Semgrep SAST
+        run: semgrep scan --config auto --error --verbose --exclude=".github"
