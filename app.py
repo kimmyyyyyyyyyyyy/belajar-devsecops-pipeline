@@ -1,4 +1,3 @@
-```python
 """Modul backend autentikasi Flask dengan antarmuka web interaktif."""
 
 import sqlite3
