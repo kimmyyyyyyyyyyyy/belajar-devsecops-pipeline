@@ -1,3 +1,4 @@
+```python
 """Modul backend autentikasi Flask dengan antarmuka web interaktif."""
 
 import sqlite3
@@ -47,6 +48,19 @@ def index():
     return render_template(
         "index.html", message=message, status_class=status_class
     )
+
+
+@app.route("/about")
+def about():
+    """Halaman about sederhana."""
+    return "Ini halaman about - versi 2"
+
+
+@app.route("/health")
+def health():
+    """Endpoint cek kesehatan aplikasi."""
+    return "OK"
+
 
 if __name__ == "__main__":
     init_db()
